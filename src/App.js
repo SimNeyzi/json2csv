@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import Input from "./components/Input.js";
+
+const Output = styled.input`
+  width: 200px;
+  height: 100px;
+  margin-bottom: 10px;
+`;
 
 function App() {
+  const [output, setOutput] = useState([]);
+
+  const handleOutput = (output) => {
+    setOutput(output);
+    console.log("from app: ", output);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header>JSON to CSV Converter</header>
+      <Input handleOutput={handleOutput}></Input>
+      <Output readOnly></Output>
     </div>
   );
 }
